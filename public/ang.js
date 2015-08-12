@@ -1,4 +1,4 @@
-var app = angular.module('redditClone', []);
+var app = angular.module('redditClone', ['ngRoute']);
 
 app.controller('numberController', function($scope){
   $scope.number = 5;
