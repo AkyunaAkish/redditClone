@@ -74,9 +74,9 @@
   background: rgb(248,246,248);
   margin: 0 auto;
   margin-top: 2%;
-  /* content: "";
+  content: "";
   clear: both;
-  display: table; */
+  display: table;
 }
 
 .mainPostImg{
@@ -110,7 +110,6 @@
   max-height: 50px;
   min-height: 50px;
   word-wrap: break-word;
-  overflow: scroll;
   color: rgb(136,134,137);
   float: right;
   margin-top: 20px;
@@ -171,12 +170,14 @@
   background: rgb(248,246,248);
   padding-bottom: -60px;
   margin: 0 auto;
+  max-width: 100%;
+  word-break: break-all;
 
 }
 .commentSection p{
   padding-left: 245px;
-  padding-top: -60px;
-  padding-bottom: -60px;
+  max-width: 800px;
+  word-wrap: break-word;
 
 }
 .addCommentSection{
@@ -225,10 +226,10 @@ input.ng-valid.ng-dirty{
 }
 
 .ng-hide-add{
-animation:0.9s lightSpeedOut ease;
+  animation:0.9s lightSpeedOut ease;
 }
 .ng-hide-remove{
- animation:0.5s flipInX ease;
+  animation:0.5s flipInX ease;
 }
 .ng-enter{
   transition:0.75s;

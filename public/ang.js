@@ -21,24 +21,12 @@ app.controller('postController', function($scope){
 })
 
 
-app.controller('commentController', function($scope, $rootScope){
+app.controller('commentController', function($scope){
   $scope.commentList = [];
   $scope.addComment = function(){
     $scope.commentList.push({commentAuthor: $scope.commentAuthor, commentInput: $scope.commentInput});
     $scope.commentAuthor = "";
     $scope.commentInput = "";
-  }
-
-  $scope.clickBtn = function(form) {
-    //valid form
-    if(form == true) {
-      $rootScope.showAddComment = showAddComment;
-    }
-
-    //invalid form
-    if(form == false) {
-      $rootScope.showAddComment =  !showAddComment;
-    }
   }
 })
 
