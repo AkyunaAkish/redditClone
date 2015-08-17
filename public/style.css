@@ -1,1 +1,317 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 
+.cloneNav{
+  margin-top: -13px;
+  height: 70px;
+  width: 100%;
+  background: rgb(248,246,248);
+}
+
+.titleNavDiv{
+  padding-top: 1%;
+  padding-left: 1%;
+  color: rgb(136,134,137);
+}
+
+.submitButtonDiv{
+  float: right;
+  margin-top: -2.5%;
+  margin-right: 82%;
+  color: rgb(136,134,137);
+}
+.submitButtonDiv button{
+  border: none;
+  background: rgb(248,246,248);
+  font-size: 1em;
+  color: rgb(136,134,137);
+
+}
+
+.searchDiv{
+  float: right;
+  margin-top: -2.5%;
+  margin-right: 65%;
+}
+
+.sortDiv{
+  /*   float: right; */
+  margin-top: -2.4%;
+  padding-left: 38%;
+}
+.sortDiv select{
+  /*   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
+  /* background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right; */
+  border: none;
+  color: rgb(136,134,137);
+  width:8%;
+}
+
+.submitPostDiv{
+  height: 600px;
+  width: 80%;
+  margin-left: 12.5%;
+  margin-bottom: -20%;
+}
+.submitPostDiv input{
+  width: 75%;
+  border: 1px solid rgb(136,134,137);
+}
+.submitPostDiv button{
+  margin-top: 1%;
+  background: white;
+  border: 1px solid  rgb(136,134,137);
+  border-radius: 8%;
+  max-width: 9%;
+}
+
+.postDiv{
+  /* height: 250px; */
+  width: 75%;
+  background: rgb(248,246,248);
+  margin: 0 auto;
+  margin-top: 2%;
+  /* content: "";
+  clear: both;
+  display: table; */
+}
+
+.mainPostImg{
+  height: 240px;
+  width: 20%;
+  padding-top: 1%;
+  padding-left: 1%;
+}
+.postTitle{
+  max-width: 20%;
+  min-width: 10%;
+  max-height: 35px;
+  word-wrap: break-word;
+  /* overflow: scroll; */
+  float: right;
+  position: relative;
+  right: 510px;
+  font-weight: bold;
+  font-size: large;
+  font-family: "Times New Roman", Georgia, Serif;
+
+}
+
+.postTitle button{
+  background: none;
+  border: none;
+}
+.postAuthor{
+  max-width: 10%;
+  min-width: 10%;
+  max-height: 50px;
+  min-height: 50px;
+  word-wrap: break-word;
+  overflow: scroll;
+  color: rgb(136,134,137);
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.postDescription{
+  max-width: 50%;
+  min-width: 50%;
+  max-height: 130px;
+  min-height: 130px;
+  word-wrap: break-word;
+  overflow: scroll;
+  float: right;
+  margin-right: 260px;
+  clear: right;
+  padding-right: 50px;
+  margin-top: -20px;
+  position: absolute;
+  margin-left: 17%;
+  margin-top: 4%;
+}
+.postDate{
+  float:right;
+  max-width: 45%;
+  min-width: 5%;
+  /* padding-right: -11%; */
+  /* margin-top: 110px; */
+  position: absolute;
+  margin-left: 17%;
+  margin-top: 13%;
+  /*   padding-right: 550px; */
+
+}
+
+.addCommentButton{
+  background: none;
+  border: none;
+}
+.viewCommentsButton{
+  background: none;
+  border: none;
+  white-space: nowrap;
+
+
+
+}
+
+.nobr{
+  white-space: nowrap;
+}
+.commentSection{
+  /*   content: "";
+  clear: both;
+  display: table; */
+  float: left;
+  width: 100%;
+  background: rgb(248,246,248);
+  padding-bottom: -60px;
+  margin: 0 auto;
+
+}
+.commentSection p{
+  padding-left: 245px;
+  padding-top: -60px;
+  padding-bottom: -60px;
+
+}
+.addCommentSection{
+  /*   content: "";
+  clear: both;
+  display: table; */
+  float: left;
+  width: 100%;
+  padding-left: 240px;
+  background: rgb(248,246,248);
+  margin: 0 auto;
+
+}
+.addCommentSection button{
+  background: white;
+  border: 1px solid grey;
+}
+
+.highlight {
+  color: green;
+}
+.highlight2 {
+  color: red;
+}
+
+.titleVoteDiv{
+  width: 400px;
+}
+
+
+form[novalidate] input{
+  border-left-width: 8px;
+  border-color: #3498db;
+  border-style: solid;
+}
+input[required].ng-pristine{
+  border-color: #e74c3c;
+}
+
+input.ng-invalid.ng-dirty{
+  border-color: #e74c3c;
+}
+
+input.ng-valid.ng-dirty{
+  border-color: #2ecc71;
+}
+
+.ng-hide-add{
+animation:0.9s lightSpeedOut ease;
+}
+.ng-hide-remove{
+ animation:0.5s flipInX ease;
+}
+.ng-enter{
+  transition:0.75s;
+  opacity: 0;
+}
+.ng-enter-stagger{
+  transition-delay:0.1s;
+}
+.ng-leave-stagger{
+  transition-delay:0.1s;
+}
+.ng-enter-active{
+  opacity: 1;
+}
+
+.ng-leave{
+  transition:0.75s;
+  opacity: 1;
+}
+
+.ng-leave-active{
+  opacity: 0;
+}
+
+/* ANIMATIONS (FROM ANIMATE.CSS) ======================== */
+/* flip in */
+@keyframes flipInX {
+  0% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    transition-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  100% {
+    transform: perspective(400px);
+    transform: perspective(400px);
+    transform: perspective(400px);
+  }
+}
+
+/* light speed out */
+@keyframes lightSpeedOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes lightSpeedOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    transform: translate3d(100%, 0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}

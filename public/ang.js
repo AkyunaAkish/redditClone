@@ -1,11 +1,53 @@
-var app = angular.module('redditClone', ['ngRoute']);
+// var app = angular.module('redditClone', ['ngRoute']);
+var app = angular.module('redditClone', ['angularMoment', 'ngAnimate']);
 
-app.controller('numberController', function($scope){
-  $scope.number = 5;
-  $scope.pickRandomNumber = function(){
-    $scope.number = Math.floor(Math.random() * 10) + 1
+app.controller('postController', function($scope){
+  $scope.setOrder = function(order) {
+    $scope.order = order;
   }
-  $scope.reverseIt = function(){
-    $scope.reverser = $scope.reverser.split("").reverse().join("");
+  $scope.postList = [];
+  $scope.addPost = function(){
+
+    $scope.vm = this;
+    $scope.vm.time = new Date();
+    $scope.date = $scope.vm.time;
+    $scope.postList.push({title: $scope.title, author: $scope.author, url: $scope.url, description: $scope.description, date: $scope.date});
+    $scope.title = "";
+    $scope.author = "";
+    $scope.url = "";
+    $scope.description = "";
+  }
+
+})
+
+
+app.controller('commentController', function($scope, $rootScope){
+  $scope.commentList = [];
+  $scope.addComment = function(){
+    $scope.commentList.push({commentAuthor: $scope.commentAuthor, commentInput: $scope.commentInput});
+    $scope.commentAuthor = "";
+    $scope.commentInput = "";
+  }
+
+  $scope.clickBtn = function(form) {
+    //valid form
+    if(form == true) {
+      $rootScope.showAddComment = showAddComment;
+    }
+
+    //invalid form
+    if(form == false) {
+      $rootScope.showAddComment =  !showAddComment;
+    }
+  }
+})
+
+app.controller('voteController', function($scope){
+  $scope.post.votes = 0;
+  $scope.upVote = function(){
+    $scope.post.votes++;
+  }
+  $scope.downVote = function(){
+    $scope.post.votes--;
   }
 })

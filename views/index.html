@@ -2,22 +2,133 @@
 <html lang="en" ng-app='redditClone'>
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='/style.css'/>
   <title>Reddit Clone</title>
 
 </head>
 <body>
+  <div ng-controller="postController">
+    <nav class="cloneNav">
+      <div class="titleNavDiv">
+        <p>Reddit Clone</p>
+      </div>
+      <div class="submitButtonDiv">
+        <button id="submitPostId">+ Submit Post</button>
+      </div>
+      <div class="searchDiv">
+        <input type="text" placeholder="Search" ng-model="query">
+      </div>
+      <!-- ng-selected="true" -->
+      <div class="sortDiv">
+        <label for="sort">Sort By <select id="sort" ng-model="selectedOrder" ng-init="selectedOrder = '-votes'">
+          <option value="-date">Date</option>
+          <option value="-votes">Votes</option>
+          <option value="title">Title</option>
+        </select>
+      </label>
+    </div>
 
-  <div ng-controller="numberController">
-    <h3>The number is: {{number}}</h3>
-    <button ng-click="pickRandomNumber()">Pick Random Number</button><br><br>
-    <input type="text" ng-model="reverser">
-    <h2>Your word is: {{reverser}}</h2>
-    <button ng-click="reverseIt()">Reverse It!</button>
+  </nav>
+
+  <div class="submitPostDiv">
+    <form ng-submit="postIt" name="form" novalidate>
+      <p>Title</p>
+      <input type="text" id="title" placeholder="Title" ng-model="title" required><br>
+      <p>Author</p>
+      <input type="text" id="author" placeholder="Author" ng-model="author" required><br>
+      <p>Image URL</p>
+      <input type="text" id="url" placeholder="Image URL" ng-model="url" required><br>
+      <p>Description</p>
+      <input type="text" id="description" placeholder="Description" ng-model="description" required><br>
+      <button type="submit" ng-click="addPost()" ng-disabled="form.$invalid" class="submitPostButton">Submit Post</button>
+    </form>
   </div>
 
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
- <script src="/ang.js"></script>
-</body>
-</html>
+  <div class="postDiv" ng-repeat="post in postList | filter: query | orderBy: selectedOrder">
+    <div  class="postAuthor">
+      <p>By&nbsp;{{post.author}}</p>
+    </div>
+
+    <div class="postTitle" ng-controller="voteController">
+      <div style="display: inline;" class="titleVoteDiv">{{post.title}}&nbsp;|&nbsp;
+        <button ng-click="upVote()"><i class="fa fa-arrow-up"></i></button>&nbsp;
+        <button ng-click="downVote()"><i class="fa fa-arrow-down"></i></button>
+        <p ng-model="post.votes" style="display: inline;" class="votesP" ng-class="{highlight: post.votes > -1, highlight2: post.votes < 0}">{{post.votes}}</p></div>
+      </div>
+
+
+
+      <div  class="postDescription">
+        <p>{{post.description}}</p>
+      </div>
+
+
+      <div ng-controller="commentController">
+
+        <div  class="postDate">
+          <i class="fa fa-calendar">&nbsp;</i><time title="{{ post.date | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{ post.date | amCalendar }}</time>&nbsp;|&nbsp;
+          <button class="viewCommentsButton" ng-click="showComments = !showComments" style="white-space: nowrap;">
+            <i class="fa fa-comment" style="white-space: nowrap;"></i>&nbsp;{{commentList.length}}&nbsp;
+            <p ng-show="commentList.length == 1" style="display: inline;">Comment</p>
+            <p ng-show="commentList.length == 0 || commentList.length > 1" style="display: inline;">Comments</p>
+          </button>&nbsp;|&nbsp;
+          <button class="addCommentButton" ng-click="showAddComment = !showAddComment">
+            <i class="fa fa-pencil"></i>Add Comment</button></p>
+
+          </div>
+
+          <img ng-src="{{post.url}}" alt="" class="mainPostImg">
+
+
+          <div class="commentSection" ng-show="showComments" ng-repeat="comment in commentList">
+            <p><b>{{comment.commentAuthor}}:</b>&nbsp;{{comment.commentInput}}</p>
+
+          </div>
+          <div class="addCommentSection" ng-show="showAddComment" ng-hide="!showAddComment">
+            <form name="form" id="commentForm" novalidate>
+              <label for="author">Author
+                <input type="text" id="author" ng-model="commentAuthor" required>
+              </label>
+              <label for="comment">Comment
+                <input type="text" id="comment" ng-model="commentInput" required>
+              </label>
+              <button type="submit" ng-click="addComment(); showAddComment = false; showComments = true" ng-disabled="form.$invalid" class="commentSubmitButton">Add Comment</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.js"></script>
+    <script src="/ang.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <script>
+    $('.submitPostDiv').hide();
+    jQuery(document).ready(function(){
+      jQuery('#submitPostId').on('click', function(event) {
+        jQuery('.submitPostDiv').toggle('show');
+      });
+    });
+    </script>
+    <script>
+    jQuery(document).ready(function(){
+      jQuery('.submitPostButton').on('click', function(event) {
+        jQuery('.submitPostDiv').toggle('hide');
+      });
+    });
+    </script>
+
+
+
+
+  </body>
+  </html>
